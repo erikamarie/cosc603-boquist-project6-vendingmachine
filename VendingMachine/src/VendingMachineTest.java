@@ -54,7 +54,45 @@ public class VendingMachineTest {
 	}
 	
 	//VendingMachineItem removeItem(String code)
+	/**
+	 * Tests the VendingMachine removeItem method
+	 */
+	@Test
+	public void testVendRemoveItem(){
+		String testName = "testName";
+		double testPricePos = 1;
+		
+		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.addItem(testItem, "A");
+		testMachine.removeItem("A");
+	}
 	
+	/**
+	 * Tests the VendingMachine removeItem with an invalid slot code, 
+	 * should throw an exception
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendRemoveItemCode() throws Exception{
+		String testName = "testName";
+		double testPricePos = 1;
+		
+		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.addItem(testItem, "A");
+		testMachine.removeItem("F");
+	}
+	/**
+	 * Tests the VendingMachine removeItem method with an empty slot
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendRemoveItemEmpty() throws Exception{
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.removeItem("A");
+	}
 	//void insertMoney(double amount)
 	
 	//double getBalance()
