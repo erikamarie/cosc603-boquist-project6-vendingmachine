@@ -94,9 +94,49 @@ public class VendingMachineTest {
 		testMachine.removeItem("A");
 	}
 	//void insertMoney(double amount)
-	
+	/**
+	 * Tests the VendingMachine insertMoney method
+	 */
+	@Test
+	public void testVendInsertMoney(){
+		double moneyAmount = 5;
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.insertMoney(moneyAmount);
+		assertEquals("testGetBalance", moneyAmount, testMachine.getBalance(), 0);
+		testMachine.insertMoney(moneyAmount);
+		assertEquals("testGetBalance2", moneyAmount*2, testMachine.getBalance(), 0);
+		
+	}
+	/**
+	 * Tests the VendingMachine insertMoney method with moneyAmount < 0,
+	 * should throw exception
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendInsertMoneyAmount() throws Exception{
+		double moneyAmount = -5;
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.insertMoney(moneyAmount);
+		
+		
+	}
 	//double getBalance()
-	
+	/**
+	 * Tests the VendingMachine getBalance method
+	 */
+	@Test
+	public void testVendGetBalance(){
+		double moneyAmount = 5;
+		VendingMachine testMachine = new VendingMachine();
+		
+		assertEquals("testGetBalance", 0, testMachine.getBalance(), 0);
+		testMachine.insertMoney(moneyAmount);
+		assertEquals("testGetBalance1", moneyAmount, testMachine.getBalance(), 0);
+		testMachine.insertMoney(moneyAmount);
+		assertEquals("testGetBalance2", moneyAmount*2, testMachine.getBalance(), 0);
+		
+	}
 	//boolean makePurchase()
 	
 	//double returnChange()
