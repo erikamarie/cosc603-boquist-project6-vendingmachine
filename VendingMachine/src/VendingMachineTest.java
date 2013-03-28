@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 /**
@@ -138,7 +139,75 @@ public class VendingMachineTest {
 		
 	}
 	//boolean makePurchase()
-	
+	/**
+	 * Tests the VendingMachine makePurchase method
+	 */
+	@Test
+	public void testVendMakePurchase(){
+		double moneyAmount = 5;
+		String testName = "testName";
+		double testPricePos = 1;
+		
+		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.addItem(testItem, "A");
+		testMachine.insertMoney(moneyAmount);
+		
+		assertTrue(testMachine.makePurchase("A"));
+		
+	}
+	/**
+	 * Tests the VendingMachine makePurchase method entering code for empty slot,
+	 * internally should receive false
+	 */
+	@Test
+	public void testVendMakePurchaseCode(){
+		double moneyAmount = 5;
+		String testName = "testName";
+		double testPricePos = 1;
+		
+		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.addItem(testItem, "A");
+		testMachine.insertMoney(moneyAmount);
+		
+		assertFalse(testMachine.makePurchase("B"));
+		
+	}
+	/**
+	 * Tests the VendingMachine makePurchase method with not enough money in balance,
+	 * internally should receive false
+	 */
+	@Test
+	public void testVendMakePurchaseMoneyAmount(){
+		double moneyAmount = 1;
+		String testName = "testName";
+		double testPricePos = 5;
+		
+		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.addItem(testItem, "A");
+		testMachine.insertMoney(moneyAmount);
+		
+		assertFalse(testMachine.makePurchase("A"));
+		
+	}
 	//double returnChange()
+	/**
+	 * Tests the VendingMachine returnChange method
+	 */
+	@Test
+	public void testVendReturnChange(){
+		double moneyAmount = 5;
+		VendingMachine testMachine = new VendingMachine();
+		
+		testMachine.insertMoney(moneyAmount);
+		assertEquals("testGetBalance", moneyAmount, testMachine.returnChange(), 0);
+		assertEquals("testGetBalance2", 0, testMachine.getBalance(), 0);
+		
+	}
 
 }
