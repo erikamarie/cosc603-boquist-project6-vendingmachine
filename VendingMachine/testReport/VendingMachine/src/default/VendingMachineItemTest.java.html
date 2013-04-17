@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VendingMachineItemTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">VendingMachine (Apr 5, 2013 5:22:27 PM)</a> &gt; <a href="../../index.html" class="el_group">VendingMachine</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.html" class="el_package">default</a> &gt; <span class="el_source">VendingMachineItemTest.java</span></div><h1>VendingMachineItemTest.java</h1><pre class="source lang-java linenums">import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+/**
+ * @author Erika Boquist
+ *
+ * Class for testing vending machine items class
+ */
+<span class="fc" id="L10">public class VendingMachineItemTest {</span>
+	
+	//VendingMachineItem Constructor Tests
+	
+	/**
+	 * Tests the VendingMachineItem with a positive price.
+	 */
+	@Test
+	public void testVendItemCostructPos() {
+		
+<span class="fc" id="L20">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L21">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L23">		VendingMachineItem tester = new VendingMachineItem(testName, testPricePos);</span>
+<span class="fc" id="L24">	}</span>
+	/**
+	 * Tests the VendingMachineItem with a negative price.
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendItemCostructNeg() throws Exception{
+		
+<span class="nc" id="L31">		String testName = &quot;testName&quot;;</span>
+<span class="nc" id="L32">		double testPriceNeg = -1;</span>
+		
+<span class="nc" id="L34">		VendingMachineItem tester = new VendingMachineItem(testName, testPriceNeg);</span>
+<span class="nc" id="L35">	}</span>
+	/**
+	 * Tests the VendingMachineItem with a zero price.
+	 */
+	@Test
+	public void testVendItemCostructZero() {
+		
+<span class="fc" id="L42">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L43">		double testPriceZero = 0;</span>
+		
+<span class="fc" id="L45">		VendingMachineItem tester = new VendingMachineItem(testName, testPriceZero);</span>
+<span class="fc" id="L46">	}</span>
+	
+	
+	//String getName() Test
+	/**
+	 * Tests the VendingMachineItem getName method.
+	 */
+	@Test
+	public void testVendItemGetName() {
+		
+<span class="fc" id="L56">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L57">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L59">		VendingMachineItem tester = new VendingMachineItem(testName, testPricePos);</span>
+		
+<span class="fc" id="L61">		assertEquals(&quot;testName&quot;, testName, tester.getName());</span>
+<span class="fc" id="L62">	}</span>
+	
+	//String getPrice()
+	/**
+	 * Tests the VendingMachineItem getPrice method.
+	 */
+	@Test
+	public void testVendItemGetPrice() {
+		
+<span class="fc" id="L71">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L72">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L74">		VendingMachineItem tester = new VendingMachineItem(testName, testPricePos);</span>
+		
+<span class="fc" id="L76">		assertEquals(&quot;testPricePos&quot;, testPricePos, tester.getPrice(), 0);</span>
+<span class="fc" id="L77">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span>VendingMachine (Apr 5, 2013 5:22:27 PM)</div></body></html>

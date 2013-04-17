@@ -23,6 +23,10 @@ public class VendingMachineTest {
 		VendingMachine testMachine = new VendingMachine();
 		
 		testMachine.addItem(testItem, "A");
+		testMachine.addItem(testItem, "B");
+		testMachine.addItem(testItem, "C");
+		testMachine.addItem(testItem, "D");
+		
 	}
 	/**
 	 * Tests the VendingMachine addItem method with a full slot, should throw exception.

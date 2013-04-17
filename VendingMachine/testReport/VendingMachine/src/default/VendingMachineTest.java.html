@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VendingMachineTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">VendingMachine (Apr 5, 2013 5:22:27 PM)</a> &gt; <a href="../../index.html" class="el_group">VendingMachine</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.html" class="el_package">default</a> &gt; <span class="el_source">VendingMachineTest.java</span></div><h1>VendingMachineTest.java</h1><pre class="source lang-java linenums">import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import org.junit.Test;
+
+/**
+ * @author Erika Boquist
+ *
+ * Class for testing vending machine class
+ */
+<span class="fc" id="L11">public class VendingMachineTest {</span>
+	
+	//void addItem(VendingMachineItem item, String code)
+	/**
+	 * Tests the VendingMachine addItem method with an empty slot.
+	 */
+	@Test
+	public void testVendAddItem(){
+<span class="fc" id="L19">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L20">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L22">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="fc" id="L23">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L25">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="fc" id="L26">		testMachine.addItem(testItem, &quot;B&quot;);</span>
+<span class="fc" id="L27">		testMachine.addItem(testItem, &quot;C&quot;);</span>
+<span class="fc" id="L28">		testMachine.addItem(testItem, &quot;D&quot;);</span>
+		
+<span class="fc" id="L30">	}</span>
+	/**
+	 * Tests the VendingMachine addItem method with a full slot, should throw exception.
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendAddItemFull() throws Exception{
+<span class="nc" id="L36">		String testName = &quot;testName&quot;;</span>
+<span class="nc" id="L37">		double testPricePos = 1;</span>
+		
+<span class="nc" id="L39">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="nc" id="L40">		VendingMachineItem testItem2 = new VendingMachineItem(testName, testPricePos);</span>
+<span class="nc" id="L41">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="nc" id="L43">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="nc" id="L44">		testMachine.addItem(testItem2, &quot;A&quot;);</span>
+<span class="nc" id="L45">	}</span>
+	/**
+	 * Tests the VendingMachine addItem method with an empty slot, but incorrect
+	 * slot code, should throw exception.
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendAddItemCode() throws Exception{
+<span class="nc" id="L52">		String testName = &quot;testName&quot;;</span>
+<span class="nc" id="L53">		double testPricePos = 1;</span>
+		
+<span class="nc" id="L55">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="nc" id="L56">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="nc" id="L58">		testMachine.addItem(testItem, &quot;F&quot;);</span>
+<span class="nc" id="L59">	}</span>
+	
+	//VendingMachineItem removeItem(String code)
+	/**
+	 * Tests the VendingMachine removeItem method
+	 */
+	@Test
+	public void testVendRemoveItem(){
+<span class="fc" id="L67">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L68">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L70">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="fc" id="L71">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L73">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="fc" id="L74">		testMachine.removeItem(&quot;A&quot;);</span>
+<span class="fc" id="L75">	}</span>
+	
+	/**
+	 * Tests the VendingMachine removeItem with an invalid slot code, 
+	 * should throw an exception
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendRemoveItemCode() throws Exception{
+<span class="nc" id="L83">		String testName = &quot;testName&quot;;</span>
+<span class="nc" id="L84">		double testPricePos = 1;</span>
+		
+<span class="nc" id="L86">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="nc" id="L87">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="nc" id="L89">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="nc" id="L90">		testMachine.removeItem(&quot;F&quot;);</span>
+<span class="nc" id="L91">	}</span>
+	/**
+	 * Tests the VendingMachine removeItem method with an empty slot
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendRemoveItemEmpty() throws Exception{
+<span class="nc" id="L97">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="nc" id="L99">		testMachine.removeItem(&quot;A&quot;);</span>
+<span class="nc" id="L100">	}</span>
+	//void insertMoney(double amount)
+	/**
+	 * Tests the VendingMachine insertMoney method
+	 */
+	@Test
+	public void testVendInsertMoney(){
+<span class="fc" id="L107">		double moneyAmount = 5;</span>
+<span class="fc" id="L108">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L110">		testMachine.insertMoney(moneyAmount);</span>
+<span class="fc" id="L111">		assertEquals(&quot;testGetBalance&quot;, moneyAmount, testMachine.getBalance(), 0);</span>
+<span class="fc" id="L112">		testMachine.insertMoney(moneyAmount);</span>
+<span class="fc" id="L113">		assertEquals(&quot;testGetBalance2&quot;, moneyAmount*2, testMachine.getBalance(), 0);</span>
+		
+<span class="fc" id="L115">	}</span>
+	/**
+	 * Tests the VendingMachine insertMoney method with moneyAmount &lt; 0,
+	 * should throw exception
+	 */
+	@Test (expected = VendingMachineException.class)
+	public void testVendInsertMoneyAmount() throws Exception{
+<span class="nc" id="L122">		double moneyAmount = -5;</span>
+<span class="nc" id="L123">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="nc" id="L125">		testMachine.insertMoney(moneyAmount);</span>
+		
+		
+<span class="nc" id="L128">	}</span>
+	//double getBalance()
+	/**
+	 * Tests the VendingMachine getBalance method
+	 */
+	@Test
+	public void testVendGetBalance(){
+<span class="fc" id="L135">		double moneyAmount = 5;</span>
+<span class="fc" id="L136">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L138">		assertEquals(&quot;testGetBalance&quot;, 0, testMachine.getBalance(), 0);</span>
+<span class="fc" id="L139">		testMachine.insertMoney(moneyAmount);</span>
+<span class="fc" id="L140">		assertEquals(&quot;testGetBalance1&quot;, moneyAmount, testMachine.getBalance(), 0);</span>
+<span class="fc" id="L141">		testMachine.insertMoney(moneyAmount);</span>
+<span class="fc" id="L142">		assertEquals(&quot;testGetBalance2&quot;, moneyAmount*2, testMachine.getBalance(), 0);</span>
+		
+<span class="fc" id="L144">	}</span>
+	//boolean makePurchase()
+	/**
+	 * Tests the VendingMachine makePurchase method
+	 */
+	@Test
+	public void testVendMakePurchase(){
+<span class="fc" id="L151">		double moneyAmount = 5;</span>
+<span class="fc" id="L152">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L153">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L155">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="fc" id="L156">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L158">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="fc" id="L159">		testMachine.insertMoney(moneyAmount);</span>
+		
+<span class="fc" id="L161">		assertTrue(testMachine.makePurchase(&quot;A&quot;));</span>
+		
+<span class="fc" id="L163">	}</span>
+	/**
+	 * Tests the VendingMachine makePurchase method entering code for empty slot,
+	 * internally should receive false
+	 */
+	@Test
+	public void testVendMakePurchaseCode(){
+<span class="fc" id="L170">		double moneyAmount = 5;</span>
+<span class="fc" id="L171">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L172">		double testPricePos = 1;</span>
+		
+<span class="fc" id="L174">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="fc" id="L175">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L177">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="fc" id="L178">		testMachine.insertMoney(moneyAmount);</span>
+		
+<span class="fc" id="L180">		assertFalse(testMachine.makePurchase(&quot;B&quot;));</span>
+		
+<span class="fc" id="L182">	}</span>
+	/**
+	 * Tests the VendingMachine makePurchase method with not enough money in balance,
+	 * internally should receive false
+	 */
+	@Test
+	public void testVendMakePurchaseMoneyAmount(){
+<span class="fc" id="L189">		double moneyAmount = 1;</span>
+<span class="fc" id="L190">		String testName = &quot;testName&quot;;</span>
+<span class="fc" id="L191">		double testPricePos = 5;</span>
+		
+<span class="fc" id="L193">		VendingMachineItem testItem = new VendingMachineItem(testName, testPricePos);</span>
+<span class="fc" id="L194">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L196">		testMachine.addItem(testItem, &quot;A&quot;);</span>
+<span class="fc" id="L197">		testMachine.insertMoney(moneyAmount);</span>
+		
+<span class="fc" id="L199">		assertFalse(testMachine.makePurchase(&quot;A&quot;));</span>
+		
+<span class="fc" id="L201">	}</span>
+	//double returnChange()
+	/**
+	 * Tests the VendingMachine returnChange method
+	 */
+	@Test
+	public void testVendReturnChange(){
+<span class="fc" id="L208">		double moneyAmount = 5;</span>
+<span class="fc" id="L209">		VendingMachine testMachine = new VendingMachine();</span>
+		
+<span class="fc" id="L211">		testMachine.insertMoney(moneyAmount);</span>
+<span class="fc" id="L212">		assertEquals(&quot;testGetBalance&quot;, moneyAmount, testMachine.returnChange(), 0);</span>
+<span class="fc" id="L213">		assertEquals(&quot;testGetBalance2&quot;, 0, testMachine.getBalance(), 0);</span>
+		
+<span class="fc" id="L215">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.0.201210061924</span>VendingMachine (Apr 5, 2013 5:22:27 PM)</div></body></html>
